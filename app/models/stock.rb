@@ -1,0 +1,28 @@
+class Stock < ActiveRecord::Base
+  
+   has_many :user_stocks
+   has_many :users, through: :user_stocks
+  
+  def self.find_by_ticker(ticker_symbol)
+    where(ticker: ticker_symbol).first
+  end
+  
+  def self.new_from_lookup(ticker_symbol)
+    lookup_up_stock = StockQuote::Stock.quote(ticker_symbol)
+    return nil unless lookup_up_stock.name
+    
+    new_stock = new(ticker: lookup_up_stock.symbol,name: lookup_up_stock.name)
+    new_stock.last_price = new_stock.price
+    new_stock
+    
+  end
+  
+  def price
+    closing_price = StockQuote::Stock.quote(ticker).close
+    return "#{closing_price} (Closing)" if closing_price
+    open_price = StockQuote::Stock.quote(ticker).open
+    yesterday_close= StockQuote::Stock.quote(ticker).previous_close
+    return " #{open_price} (Opening) - #{yesterday_close} (Yesterday Closing)" if open_price 
+    'Not available'  
+  end
+end
