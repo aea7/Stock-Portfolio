@@ -1,4 +1,5 @@
 <%= render 'stocks/lookup' %> 
 
-
+<% if @user.stocks.size > 0 %>
 <%= render 'stocks/list' %> 
+<% end %>

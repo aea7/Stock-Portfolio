@@ -2,9 +2,19 @@
   display: inline-block;
 }
 
+.table{
+  background-color: #fff;
+}
+
+body {
+  background-image: asset-url("a.jpg");
+  background-size:100%;
+  background-size:cover;
+}
+
 #aa {
 font-size:2.3em;
-color: #000;
+color: #FFF;
 letter-spacing: -1px;
 font-weight: bold;
 }

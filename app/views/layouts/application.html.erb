@@ -51,10 +51,11 @@
           <ul class="nav navbar-nav col-md-6">
             <li><%= link_to "My Portfolio", my_portfolio_path  %></li>
             <li><%= link_to "My Profile", edit_registration_path(current_user)  %></li>
+            <li><%= link_to "My Friends",my_friends_path %></li>
           </ul>
           <ul class = "nav navbar-right col-md-4">
             
-            <%= link_to my_portfolio_path do %>
+            <%= link_to user_path(current_user) do %>
           <li class= "col-md-8 user-name text-right"> <i class="fa fa-user"></i>
              <%= current_user.full_name.present? ? current_user.full_name : current_user.email %> 
             </li>
@@ -79,7 +80,7 @@
       
       
       <footer>
-        <p>&copy; aak-2016</p>
+        <p style="color:#fff;font-size:1.3em; ">&copy; aak-2016</p>
       </footer>
 
     </div> <!-- /container -->
